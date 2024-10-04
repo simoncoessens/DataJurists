@@ -24,9 +24,9 @@ Question: {question}
 Response: {input}
 
 Classify the response into one of the following categories:
-1. Good Enough - The response adequately answers the question with sufficient detail.
-2. Good - The response is clear and comprehensive, with excellent detail.
-3. Vague - The response is too general and lacks detail.
+1. Good Enough - The response answers the question well and in detail.
+2. Good - The response is an answer to the question.
+3. Vague - The response is answering the question but not completely.
 4. Too Vague - The response is unclear or not relevant to the question.
 
 Provide suggestions for improvement if necessary. These suggestions should help the user provide more clarity, detail, or relevance.
