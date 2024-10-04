@@ -19,21 +19,26 @@ def render_next_question_button(next_page):
     if st.button("Next Question", type="primary"):
         st.switch_page(next_page)
 
-# Function to display a question page
 def render_question_page(question, example, articles, next_page, chatbot_context, question_id):
     if 'answers' not in st.session_state:
         st.session_state['answers'] = {}
 
-    
-    # Initialize chat history and agent in session state
+    # Format the initial context based on the current question and articles
     context = chatbot_context.format(question=question, articles=articles)
 
-    # Initialize agent and messages in session state if they don't exist
-    if "agent" not in st.session_state:
-        st.session_state.agent = AgentWithMemory(context=context, model = "gpt-3.5-turbo")
+    # Add previous answers to the context
+    previous_answers = "\n\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state['answers'].items()])
+    
+    # Combine previous answers with the current context
+    if previous_answers:
+        context += f"\n\nPrevious Questions and Answers:\n{previous_answers}"
 
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+
+    # Initialize agent and messages in session state if they don't exist
+    st.session_state.agent = AgentWithMemory(context=context, model = "gpt-3.5-turbo")
+
+    #if "messages" not in st.session_state:
+    st.session_state.messages = []
 
     # Apply custom CSS for layout and buttons
     st.markdown(
