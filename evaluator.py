@@ -48,7 +48,7 @@ class Classification(BaseModel):
     )
 
 # Initialize the LLM with structured output for classification and suggestions
-llm = ChatOpenAI(temperature=0, model="gpt-4o").with_structured_output(
+llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo").with_structured_output(
     Classification
 )
 

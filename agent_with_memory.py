@@ -21,7 +21,7 @@ class AgentWithMemory:
             self.memory.chat_memory.add_ai_message(context)
         
         # Initialize the language model
-        self.llm = ChatOpenAI(temperature=0, model="gpt-4o")
+        self.llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
         
         # Create the agent without tools and with conversation memory
         self.agent_chain = initialize_agent(
