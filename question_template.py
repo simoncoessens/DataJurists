@@ -30,7 +30,7 @@ def render_question_page(question, example, articles, next_page, chatbot_context
 
     # Initialize agent and messages in session state if they don't exist
     if "agent" not in st.session_state:
-        st.session_state.agent = AgentWithMemory(context=context)
+        st.session_state.agent = AgentWithMemory(context=context, model = "gpt-3.5-turbo")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []

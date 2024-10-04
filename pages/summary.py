@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
+from agent_with_memory import AgentWithMemory
 
 # Set the page configuration to wide layout and collapse the sidebar
 st.set_page_config(page_title="AI Act Viewer", layout="wide", initial_sidebar_state="collapsed")
@@ -17,7 +18,7 @@ st.markdown(
             width: 200px;
             height: 50px;
             display: block;
-            margin: 10px auto; /* Center the button */
+            margin: 10px auto;
         }
         .centered-content {
             text-align: center;
@@ -45,41 +46,50 @@ annotations = [
 
 # Map articles to annotation indices
 article_to_annotation_index = {
-    "Article 5": 1, 
+    "Article 5": 1,
     "Article 10": 2,
     "Article 15": 3,
 }
 
-# Create two columns for layout with improved centering
-col1, col2 = st.columns([1, 1])  # Adjusted column widths for better balance
+# Initialize the agent with context
+context = (
+    "The European Union AI Act is a proposed regulation on artificial intelligence in the "
+    "European Union. It aims to introduce a common regulatory and legal framework for artificial "
+    "intelligence. The regulation classifies AI applications into risk categories and imposes "
+    "different regulatory requirements depending on the category."
+)
+agent = AgentWithMemory(context=context, model="gpt-4o")
 
-# Left column for summary of answers
+# Create two columns for layout with improved centering
+col1, col2 = st.columns([1, 1])
+
+# Left column for summary of answers and obligations
 with col1:
     st.markdown("<h1 class='centered-content'>Summary of Your Answers</h1>", unsafe_allow_html=True)
     
     # Display saved answers
-    if 'answers' in st.session_state and st.session_state['answers']:
-        for question_id, answer in st.session_state['answers'].items():
+    user_answers = st.session_state.get('answers', {})
+    if user_answers:
+        for question_id, answer in user_answers.items():
             st.write(f"**{question_id}:** {answer}")
     else:
         st.write("No answers submitted yet.")
     
-    # Buttons for navigating to specific articles in the PDF
-    st.markdown("<h1 class='centered-content'>AI Act Explanation</h1>", unsafe_allow_html=True)
-    st.write("""
-        The AI Act includes several important articles that apply to you:
-        - **Prohibited AI Practices**: Refer to [Article 5](#) for details.
-        - **Data Governance**: See [Article 10](#) for data requirements.
-        - **Transparency Obligations**: Check [Article 15](#) for transparency rules.
-    """, unsafe_allow_html=True)
-
-    # Centered buttons for navigation
-    if st.button("Go to Article 5", type="primary"):
-        st.session_state['annotation_to_scroll'] = article_to_annotation_index["Article 5"]
-    if st.button("Go to Article 10", type="primary"):
-        st.session_state['annotation_to_scroll'] = article_to_annotation_index["Article 10"]
-    if st.button("Go to Article 15", type="primary"):
-        st.session_state['annotation_to_scroll'] = article_to_annotation_index["Article 15"]
+    # Format the answers into a prompt
+    formatted_answers = "\n".join([f"{question_id}: {answer}" for question_id, answer in user_answers.items()])
+    prompt = (
+        "Based on the following answers provided by the user, generate a summary of the obligations "
+        "that apply to them under the AI Act:\n\n" + formatted_answers
+    )
+    
+    # Generate and display the summary of obligations
+    if st.button("Generate Summary of Obligations"):
+        with st.spinner("Generating summary..."):
+            response = agent.run(prompt)
+            summary = response['output']
+            st.markdown("### Summary of Obligations")
+            st.write(summary)
+    
 
 # Right column for the AI Act PDF viewer
 with col2:
@@ -87,9 +97,9 @@ with col2:
     
     # Display the PDF viewer with annotations and navigation
     pdf_viewer(
-        "AIA.pdf",  # Replace with the actual path or URL to your PDF
+        "AIA.pdf",
         annotations=annotations,
         scroll_to_annotation=st.session_state['annotation_to_scroll'],
-        width=700,  # Adjust width for better centering
-        height=1000  # Adjust height as needed
+        width=700,
+        height=1000
     )

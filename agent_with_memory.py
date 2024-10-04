@@ -13,7 +13,7 @@ os.environ["OPENAI_API_KEY"] = openai_api_key
 
 
 class AgentWithMemory:
-    def __init__(self, context=""):
+    def __init__(self,  model, context=""):
         # Initialize the conversation memory with the provided context
         self.memory = ConversationBufferMemory(memory_key="chat_history")
         if context:
@@ -21,7 +21,7 @@ class AgentWithMemory:
             self.memory.chat_memory.add_ai_message(context)
         
         # Initialize the language model
-        self.llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+        self.llm = ChatOpenAI(temperature=0, model=model)
         
         # Create the agent without tools and with conversation memory
         self.agent_chain = initialize_agent(
