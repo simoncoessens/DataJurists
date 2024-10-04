@@ -29,7 +29,7 @@ def show_landing_page():
 
     # Centered "Get Started" button
     if st.button("Get Started", type="primary"):
-        st.switch_page("pages/question1.py")
+        st.switch_page("pages/intro.py")
 
 # Check if the user is on the landing page and render the content
 if 'page' not in st.session_state:
