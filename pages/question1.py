@@ -1,7 +1,7 @@
 from question_template import render_question_page
 
 render_question_page(
-    question="Is the system you are developing categorized as an AI system or a General Purpose AI (GPAI) model?",
+    question="Describe the AI system you are developing. Include details about its purpose, functionality, and whether it can be classified as a General Purpose AI (GPAI) model or a general AI system.",
     example=(
     "For example, the system you are developing could be an AI-based chatbot for customer support, "
     "an autonomous decision-making algorithm, or a machine learning model designed to predict user behavior. "
