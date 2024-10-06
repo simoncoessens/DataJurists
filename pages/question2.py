@@ -15,43 +15,22 @@ render_question_page(
         "For instance, if you are developing an AI system, you might be classified as a 'Provider.' "
         "If you use an AI system under your authority, you could be a 'Deployer.' "
     ),
-    articles = """
-Art. 3 (3-7, 68):
-
-3. 'Provider' means a natural or legal person, public authority, agency, or other body that develops an AI system or 
-a general-purpose AI model, or that has an AI system or a general-purpose AI model developed and places it on the 
-market or puts it into service under its own name or trademark, whether for payment or free of charge.
-
-4. 'Deployer' means a natural or legal person, public authority, agency, or other body using an AI system under its 
-authority, except where the AI system is used in the course of a personal non-professional activity.
-
-5. 'Authorised representative' means a natural or legal person located or established in the Union who has received and 
-accepted a written mandate from a provider of an AI system or a general-purpose AI model to perform and carry out on its 
-behalf the obligations and procedures established by this Regulation.
-
-6. 'Importer' means a natural or legal person located or established in the Union that places on the market an AI system 
-that bears the name or trademark of a natural or legal person established in a third country.
-
-7. 'Distributor' means a natural or legal person in the supply chain, other than the provider or the importer, that makes 
-an AI system available on the Union market.
-
-68. 'Downstream provider' means a provider of an AI system, including a general-purpose AI system, which integrates an 
-AI model, regardless of whether the AI model is provided by themselves and vertically integrated or provided by another 
-entity based on contractual relations.
-    """,
+    article_ids=[
+        "article_3_3", "article_3_4", "article_3_5", "article_3_6", "article_3_7", "article_3_68",
+        "recital_rct_13", "recital_rct_23", "recital_rct_79", "recital_rct_82", "recital_rct_83"
+    ],
     next_page="pages/question3.py",
     chatbot_context="""
-    You are an AI assistant helping users identify their role in relation to an AI system or General Purpose AI (GPAI) model 
-    under the AI Act. Users may hold different responsibilities depending on their role, such as provider, deployer, or 
-    authorized representative.
+    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
-    Your task is to provide accurate, clear, and concise answers based on the following context:
+    Your main responsibilities include:
 
-    - Main Question: {question}
-    - Relevant Articles (related to the AI Act definitions of roles): {articles}
+    - Assisting users in answering the **Main Question**: {question}
+    - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses help users understand their role under the AI Act, based on the definitions provided in the 
-    articles. Whenever possible, refer to the examples and relevant articles to clarify their situation.
+    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=3
 )

@@ -11,30 +11,22 @@ render_question_page(
         "For example, if you are a provider located in a third country but selling AI systems in the EU, or if your AI system produces "
         "an output that is used within the EU, this regulation will apply to you."
     ),
-    articles = """
-Article 2 (1 a, c):
-
-1. This Regulation applies to:
-
-(a) Providers placing on the market or putting into service AI systems or placing on the market general-purpose AI models 
-in the Union, irrespective of whether those providers are established or located within the Union or in a third country.
-
-(c) Providers and deployers of AI systems that have their place of establishment or are located in a third country, where the 
-output produced by the AI system is used in the Union.
-    """,
+    article_ids=[
+        "article_2_1", "article_2_1",
+        "recital_rct_21", "recital_rct_22", "recital_rct_82"
+    ],
     next_page="pages/question5.py",
     chatbot_context="""
-    You are an AI assistant helping users determine whether the geographical scope of the AI Act applies to them. 
-    This question focuses on whether their AI system is placed on the market or put into service in the Union, or whether the 
-    output of their AI system is used in the Union.
+    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
-    Your task is to provide accurate, clear, and concise answers based on the following context:
+    Your main responsibilities include:
 
-    - Main Question: {question}
-    - Relevant Articles (related to the geographical scope of the AI Act): {articles}
+    - Assisting users in answering the **Main Question**: {question}
+    - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses help users understand if the AI Act applies to them based on where their AI system is placed 
-    on the market or where its output is used. Whenever possible, refer to the examples and relevant articles to clarify their situation.
+    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=4
 )

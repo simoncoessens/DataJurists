@@ -31,24 +31,22 @@ render_question_page(
         "which are subject to strict regulations under the AI Act. Additionally, if your AI system is a safety component in machinery "
         "or personal protective equipment, it may also be considered high-risk."
     ),
-    articles = """
-Article 6:
-1. Irrespective of whether an AI system is placed on the market or put into service independently of the products referred to in points (a) and (b), 
-that AI system shall be considered to be high-risk where both of the following conditions are fulfilled:
-
-(a) the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I;
-
-(b) the product whose safety component pursuant to point (a) is the AI system, or the AI system itself as a product, is required to undergo a third-party conformity assessment, with a view to the placing on the market or the putting into service of that product pursuant to the Union harmonisation legislation listed in Annex I.
-    """,
+    article_ids=[
+        "article_6",
+        "recital_rct_47", "recital_rct_50", "recital_rct_51"
+    ],
     next_page="pages/question8.py",
     chatbot_context="""
-    You are an AI assistant helping users identify whether their AI system or its related product falls into the high-risk categories defined by the AI Act.
-    
-    - Main Question: {question}
-    - Relevant Articles and Annexes: {articles}
+    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
-    Assist users in determining whether their AI system is considered high-risk by referencing the provided annexes and articles. Ensure users understand 
-    the specific products or applications mentioned in the legislation and how they relate to the high-risk categories.
+    Your main responsibilities include:
+
+    - Assisting users in answering the **Main Question**: {question}
+    - Referencing the **Relevant Articles** (from the AI Act): {articles}
+
+    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=7
 )

@@ -3,35 +3,24 @@ from question_template import render_question_page
 render_question_page(
     question="Describe the AI system you are developing. Include details about its functionality and whether it can be classified as a General Purpose AI (GPAI) model or an AI system.",
     example=(
-    "For example, the system you are developing could be an AI-based chatbot for customer support, "
-    "an autonomous decision-making algorithm, or a machine learning model designed to predict user behavior. "
-    "Alternatively, if you are working on a General Purpose AI (GPAI) model, it might be intended for broad applications "
-    "such as language processing or image recognition across multiple industries."
-),
-    articles = """
-AI system’ means a machine-based system that is designed to operate with varying levels of autonomy and that may
-exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives,
-how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or
-virtual environments;
-
-general-purpose AI model’ means an AI model, including where such an AI model is trained with a large amount of
-data using self-supervision at scale, that displays significant generality and is capable of competently performing
-a wide range of distinct tasks regardless of the way the model is placed on the market and that can be integrated into
-a variety of downstream systems or applications, except AI models that are used for research, development or
-prototyping activities before they are placed on the market;
-    """,
+        "For example, the system you are developing could be an AI-based chatbot for customer support, "
+        "an autonomous decision-making algorithm, or a machine learning model designed to predict user behavior. "
+        "Alternatively, if you are working on a General Purpose AI (GPAI) model, it might be intended for broad applications "
+        "such as language processing or image recognition across multiple industries."
+    ),
+    article_ids=["article_3_1", "article_3_63", "recital_rct_12", "recital_rct_97", "recital_rct_100"],
     next_page="pages/question2.py",
     chatbot_context="""
-    You are an AI assistant helping users with questions about deploying, using, or putting systems into service. 
-    Users will ask questions to clarify the main inquiry they are working on.
+    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
-    Your task is to provide accurate, clear, and concise answers based on the following context:
+    Your main responsibilities include:
 
-    - Main Question: {question}
-    - Relevant Articles (related to the AI Act): {articles}
+    - Assisting users in answering the **Main Question**: {question}
+    - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses are informative and assist users in understanding the main question.
-    Whenever possible, refer to the example provided, and offer additional insight based on the relevant articles.
+    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=1
 )

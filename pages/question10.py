@@ -9,12 +9,10 @@ render_question_page(
         "For example, if your AI system generates synthetic videos or text content, you may be required to ensure that the outputs are clearly marked as artificially generated. "
         "Similarly, if your system interacts with natural persons, it may need to inform users that they are interacting with an AI, unless this is obvious."
     ),
-    articles = """
-Article 50:
-1. Providers must ensure that AI systems designed to interact directly with natural persons are developed in a way that ensures those persons are informed they are interacting with an AI system unless it is obvious from the context. This does not apply to AI systems used for detecting, preventing, or prosecuting criminal offences, unless available for the public to report crimes.
-
-2. Providers of AI systems that generate synthetic audio, image, video, or text content must ensure that the content is marked in a machine-readable format to make it detectable as artificially generated. These systems must be robust and reliable, considering technical standards, costs, and limitations of various types of content. Exemptions apply when systems assist in standard editing without significantly altering the input or when authorized for criminal offence detection or prosecution.
-    """,
+    article_ids=[
+        "article_50",
+        "recital_rct_116"
+    ],
     next_page="pages/risk_placement.py",
     chatbot_context="""
     You are an AI assistant helping users determine whether their AI system interacts directly with natural persons or generates synthetic content based on Article 50.

@@ -11,17 +11,11 @@ render_question_page(
         "For example, if your AI system is used for biometric identification or in the management of critical infrastructure, "
         "it may fall under high-risk categories as defined by the AI Act. The chatbot will suggest relevant categories based on your responses."
     ),
-    articles = """
-High-risk AI systems pursuant to Article 6(2) are listed in the following areas:
-1. **Biometrics** (remote identification, categorisation, emotion recognition).
-2. **Critical Infrastructure** (AI systems as safety components in digital infrastructure, traffic, utilities like water, gas, heating, electricity).
-3. **Education** (determining access, evaluating outcomes, monitoring behavior).
-4. **Employment** (recruitment, performance monitoring, task allocation).
-5. **Access to essential services** (creditworthiness, public benefits, emergency services).
-6. **Law Enforcement** (risk assessment, evidence evaluation, polygraphs).
-7. **Migration and Border Control** (risk assessment, visa applications).
-8. **Administration of Justice** (supporting judicial authorities, influencing elections).
-    """,
+    article_ids=[
+        "article_6",
+        "recital_rct_52", "recital_rct_54", "recital_rct_56", "recital_rct_57", "recital_rct_59", 
+        "recital_rct_60", "recital_rct_61", "recital_rct_62", "recital_rct_63"
+    ],
     next_page="pages/question9.py",
     chatbot_context="""
     You are an AI assistant helping users identify the high-risk category their AI system might belong to based on Article 6 of the AI Act.
