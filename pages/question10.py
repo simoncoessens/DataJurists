@@ -15,7 +15,7 @@ Article 50:
 
 2. Providers of AI systems that generate synthetic audio, image, video, or text content must ensure that the content is marked in a machine-readable format to make it detectable as artificially generated. These systems must be robust and reliable, considering technical standards, costs, and limitations of various types of content. Exemptions apply when systems assist in standard editing without significantly altering the input or when authorized for criminal offence detection or prosecution.
     """,
-    next_page="pages/summary.py",
+    next_page="pages/risk_placement.py",
     chatbot_context="""
     You are an AI assistant helping users determine whether their AI system interacts directly with natural persons or generates synthetic content based on Article 50.
 
