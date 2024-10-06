@@ -1,4 +1,3 @@
-# intro.py
 import streamlit as st
 
 def render_intro():
@@ -28,6 +27,19 @@ def render_intro():
         avoid penalties, ensure ethical AI usage, and maintain trust with consumers. Our tool 
         helps you navigate the complexity of the AIA, ensuring that your AI system meets all 
         regulatory requirements.
+    """)
+
+    # Add disclaimer
+    st.warning("""
+        **DISCLAIMER**: The AI Act represents only a portion of the rules that apply to the various 
+        stakeholders in the AI value chain. It's important to remember that being compliant with the 
+        AI Act does not mean you are automatically compliant with other existing Union laws. 
+        Specifically, the AI Act complements regulations on data protection, consumer protection, 
+        fundamental rights, employment and worker protection, and product safety. 
+
+        Please keep in mind that while this compliance tool is designed with legal accuracy in mind, 
+        it may still make errors. Always verify the information with a qualified (human) legal advisor 
+        to ensure full compliance.
     """)
 
     # Add CSS for Next Page button styling
