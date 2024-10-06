@@ -73,7 +73,7 @@ a maximum period of at least four years.
 Point (h) of the first subparagraph is without prejudice to Article 9 of Regulation (EU) 2016/679 for the processing of
 biometric data for purposes other than law enforcement.
     """,
-    next_page="pages/summary.py",
+    next_page="pages/question7.py",
     chatbot_context="""
     You are an AI assistant helping users determine if their AI system falls under one of the prohibited practices in the AI Act.
 
