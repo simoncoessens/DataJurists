@@ -2,7 +2,7 @@ from question_template import render_question_page
 
 render_question_page(
     question=(
-        "What is your role concerning the AI system or General Purpose AI (GPAI) model? "
+        "What is your role concerning the AI system? "
         "Select one of the following options:\n\n"
         "- Provider\n"
         "- Downstream provider\n"
@@ -14,7 +14,6 @@ render_question_page(
     example=(
         "For instance, if you are developing an AI system, you might be classified as a 'Provider.' "
         "If you use an AI system under your authority, you could be a 'Deployer.' "
-        "Alternatively, if you're working with a GPAI model, you could be an 'Authorized Representative.'"
     ),
     articles = """
 Art. 3 (3-7, 68):
