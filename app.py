@@ -1,7 +1,14 @@
 import streamlit as st
 
 # Set page configuration to start with sidebar collapsed
-st.set_page_config(page_title="Questionnaire App", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed")
+
+# Use st.logo to display the logo in the upper-left corner
+st.logo(
+    "annalogo.png",  # Replace with your large logo file path
+    icon_image="annalogo.png",  # Optional: Replace with a smaller version for the sidebar
+    size="large"  # Choose between "small", "medium", and "large"
+)
 
 # Hide the sidebar expander button and style buttons
 st.markdown(
@@ -26,7 +33,7 @@ st.markdown(
 # Function to display the landing page
 def show_landing_page():
     st.markdown("<h1 style='text-align: center; margin-top: 20%;'>Navigating the AI Act</h1>", unsafe_allow_html=True)
-
+    
     # Centered "Get Started" button
     if st.button("Get Started", type="primary"):
         st.switch_page("pages/intro.py")
