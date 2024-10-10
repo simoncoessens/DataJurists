@@ -6,15 +6,6 @@ from agent_with_memory import AgentWithMemory
 import time
 import utils
 
-# Function to read the base64 string from a file
-def read_base64_from_file(file_path):
-    with open(file_path, "r") as file:
-        encoded_string = file.read()
-    return encoded_string
-
-# Read the base64-encoded TT Commons font from the .txt file
-font_base64_tt_commons = read_base64_from_file('encoded_tt_commons.txt')  # Adjust path as necessary
-
 openai_api_key = st.secrets["openai"]["api_key"]
 pinecone_api_key = st.secrets["pinecone"]["api_key"]
 
@@ -53,6 +44,10 @@ def fetch_articles(article_ids):
 
     return "\n\n".join(all_fetched_texts)
 
+
+
+
+
 # Function to render the next question button
 def render_next_question_button(next_page):
     # Add a next question button at the bottom-right of the page
@@ -61,6 +56,8 @@ def render_next_question_button(next_page):
 
 # Main function to render the question page
 def render_question_page(question, example, article_ids, next_page, chatbot_context, question_id):
+
+    #utils.add_bg_from_base64("encoded_background.txt")
 
     if 'questions' not in st.session_state:
         st.session_state['questions'] = {}
@@ -86,24 +83,16 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
     st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
     st.session_state.messages = []
 
-    # Apply custom CSS for layout, fonts, chatbot, and buttons
+    # Apply custom CSS for layout and buttons
     st.markdown(
-    f"""
+    """
     <style>
-        @font-face {{
-          font-family: 'TTCommons';
-          src: url(data:font/opentype;charset=utf-8;base64,{font_base64_tt_commons}) format('opentype');
-        }}
-        /* Apply TT Commons font globally to all elements */
-        * {{
-            font-family: 'TTCommons', sans-serif;
-        }}
         /* Hide the Streamlit default hamburger menu (sidebar expander) */
-        [data-testid="collapsedControl"] {{
+        [data-testid="collapsedControl"] {
             display: none;
-        }}
+        }
         /* Style for the next question button */
-        button[kind="primary"] {{
+        button[kind="primary"] {
             background-color: black;
             color: white;
             width: 200px;
@@ -112,34 +101,30 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
             bottom: 30px;
             right: 30px;
             border-radius: 5px;
-        }}
-        button[kind="primary"]:hover {{
+        }
+        button[kind="primary"]:hover {
             background-color: #333;
-        }}
-        .spacer {{
+        }
+        .spacer {
             margin-top: 200px;
-        }}
-        .big-input {{
+        }
+        .big-input {
             font-size: 18px !important;
             height: 100px !important;
             width: 100% !important;
-        }}
+        }
         /* Adjust the main container to have full width */
-        .main .block-container{{
+        .main .block-container{
             max-width: 90%;
             padding-left: 5%;
             padding-right: 5%;
-        }}
-        /* Chatbot styling: Apply TT Commons font to the chat */
-        .stChatMessage {{
-            font-family: 'TTCommons', sans-serif;
-        }}
+        }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-    # Layout split with adjusted gap
+   # Layout split with adjusted gap
     left_col, right_col = st.columns([1, 1], gap="large")
 
     # Left side for the question and user input
@@ -163,6 +148,8 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
                     st.markdown("<h4>Suggestions for Improvement:</h4>", unsafe_allow_html=True)
                     for suggestion in suggestions:
                         st.write(f"- {suggestion}")
+
+
 
     # Right side for examples and chatbot
     with right_col:
@@ -190,7 +177,7 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
             with chat_placeholder:
                 for message in reversed(st.session_state.messages):
                     with st.chat_message(message["role"]):
-                        st.markdown(f"<div class='stChatMessage'>{message['content']}</div>")
+                        st.markdown(message["content"])
 
     # Render the Next Question button
     render_next_question_button(next_page)
