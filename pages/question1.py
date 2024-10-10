@@ -2,41 +2,35 @@ from question_template import render_question_page
 
 render_question_page(
     question="""
-    Provide a detailed description of the AI system that is the subject of this compliance analysis. Focus on its functionality and classify it as either an AI system or a General Purpose AI (GPAI) system. Explain the reasoning behind your classification.
+    Describe the AI system that will be the target of this compliance analysis. Include details about its functionality and whether it can be classified as an AI system or a General Purpose AI system.
     """,
     example=(
         """
-**Context**
 
-Understanding the nature of an AI system is essential when assessing compliance with regulations like the EU AI Act. The European Union uses an international definition that distinguishes AI systems from traditional software, focusing on two key categories: AI systems and General Purpose AI (GPAI) models.
+Defining what constitutes an AI system can sometimes be tricky. The European Union has opted to align with an international definition, aiming to distinguish AI systems from traditional software (such as a system that calculates your BMI). The EU AI Act focuses on two primary targets: AI systems and General Purpose AI (GPAI) models.
 
-An AI system is generally defined by the following characteristics:
+An AI system is characterized by the following features:
 
-- **Autonomy**: It operates with varying levels of independence, without constant human intervention.
-- **Adaptability**: The system may evolve or learn after deployment, adjusting its behavior toward specific goals or objectives.
-- **Inference**: It generates outputs such as predictions, recommendations, or decisions based on processing inputs.
-- **Impact**: Its outputs can influence physical or virtual environments.
+- **Autonomy**
+- **Adaptability**
+- **Inference**
+- **Impact**
 
-A General Purpose AI (GPAI) model is characterized by:
+A General Purpose AI (GPAI) model, on the other hand, has these characteristics:
 
-- **Generality**: It is designed to perform a broad range of tasks rather than being specialized.
-- **Versatility**: It can be integrated into various downstream applications or systems.
-- **Competency**: It demonstrates competence in multiple domains or tasks beyond its original scope.
+- **Significant generality**
+- **Performs a wide variety of tasks**
+- **Integrated into downstream systems**
+
+Not sure where your AI system fits in? No worries! Ask **ANNA** to help clear things up and guide you through the process.
         """
     ),
     article_ids=["article_003", "recital_rct_12", "recital_rct_97", "recital_rct_100"],
     next_page="pages/question2.py",
     chatbot_context="""
-    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
-    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
+    You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 
-    Your main responsibilities include:
-
-    - Assisting users in answering the **Main Question**: {question}
-    - Referencing the **Relevant Articles** (from the AI Act): {articles}
-
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold and write them in readable text not as the internal representation) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
-    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
+    When users ask additional questions, provide clear, informative answers that stay focused on guiding them through the compliance process. Always cite relevant articles from the AI Act (in a readable format, not as internal codes) to support your answers. Your goal is to help users accurately complete the questionnaire by providing concise and relevant information.
     """,
     question_id=1
 )

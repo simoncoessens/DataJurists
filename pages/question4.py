@@ -1,33 +1,26 @@
 from question_template import render_question_page
 
 render_question_page(
-    question=(
-        "Are you under the geographical scope of the AIA?\n\n"
-        "Please provide more information about the country where you are established and where your activities are based. "
-        "Specifically, consider the following questions to help the Chatbot Assistant guide you through your obligations under the AI Act:\n\n"
-        "- Are you placing AI systems on the market or putting them into service within the European Union (EU)?\n"
-        "- Is your place of establishment or location outside the EU, but the AI system's output is used within the EU?"
-    ),
+    question="""
+    Is your AI system possibly excluded from the AI Act because it’s for military or scientific research use?
+    """,
     example=(
-        "For example, if you are a provider located in a third country but selling AI systems in the EU, or if your AI system produces "
-        "an output that is used within the EU, this regulation will apply to you."
+        """
+**Context**
+
+For national security purposes and to protect innovation, the AI Act excludes from its scope systems used for certain purposes. For example, AI systems developed or used for military, defense, or national security purposes may be excluded, as well as AI systems developed solely for scientific research under specific conditions.
+
+Want to dive deeper? Chat with ANNA for more details!
+        """
     ),
     article_ids=[
-        "article_002.001", "article_002.002",
-        "recital_rct_21", "recital_rct_22", "recital_rct_82"
+        "article_002.003", "article_002.004", "article_002.006", "article_002.008","article_002.010","article_002.012", "recital_rct_25", "recital_rct_24"
     ],
     next_page="pages/question5.py",
     chatbot_context="""
-    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
-    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
+    You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 
-    Your main responsibilities include:
-
-    - Assisting users in answering the **Main Question**: {question}
-    - Referencing the **Relevant Articles** (from the AI Act): {articles}
-
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold and write them in readable text not as the internal representation) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
-    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
+    When users ask additional questions, provide clear, informative answers that stay focused on guiding them through the compliance process. Always cite relevant articles from the AI Act (in a readable format, not as internal codes) to support your answers. Your goal is to help users accurately complete the questionnaire by providing concise and relevant information.
     """,
     question_id=4
 )

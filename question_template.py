@@ -195,7 +195,7 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
 
     # Right side for examples
     with right_col:
-        st.markdown("<h4>Example Explanation</h4>", unsafe_allow_html=True)
+        st.markdown("<h4>Context</h4>", unsafe_allow_html=True)
         st.write(example)
 
 

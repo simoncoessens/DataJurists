@@ -1,14 +1,15 @@
 from question_template import render_question_page
 
 render_question_page(
-    question=(
-        "Does your AI system pose a significant risk of harm to the health, safety, or fundamental rights of any person? "
-        "Based on your previous responses, the chatbot will assist you in determining whether your AI system might be considered high-risk under Article 6."
-        "\n\nIf you are unsure, you can ask the chatbot for more information on specific conditions that define significant risks."
-    ),
+    question="""
+    Does your AI system pose a significant risk of harm to the health, safety, or fundamental rights?
+    """,
     example=(
-        "For example, if your AI system is intended to perform profiling of natural persons or if it influences decision-making outcomes, "
-        "it may pose a significant risk. The chatbot can help you explore whether your system meets these or other high-risk conditions."
+        """
+To avoid overburdening, the AI Act narrows the scope of what qualifies as a high-risk AI system when it doesn’t pose a significant risk to health, safety, or fundamental rights.
+
+For example, if your AI system is intended to perform profiling of natural persons or influences decision-making outcomes, it may pose a significant risk. However, ANNA can guide you in determining if your AI system falls under this exception, which could reduce the regulatory burden on you.
+        """
     ),
     article_ids=[
         "article_006",
@@ -16,16 +17,10 @@ render_question_page(
     ],
     next_page="pages/question10.py",
     chatbot_context="""
-    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
-    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
+    You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 
-    Your main responsibilities include:
-
-    - Assisting users in answering the **Main Question**: {question}
-    - Referencing the **Relevant Articles** (from the AI Act): {articles}
-
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold and write them in readable text not as the internal representation) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
-    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
+    When users ask additional questions, provide clear, informative answers that stay focused on guiding them through the compliance process. Always cite relevant articles from the AI Act (in a readable format, not as internal codes) to support your answers. Your goal is to help users accurately complete the questionnaire by providing concise and relevant information.
+    If you are unsure if the user's system poses significant risk to health, safety or fundamental rights suggest him to comply with the most stringent requirements. For example to comply with high risk obligations.
     """,
     question_id=9
 )
