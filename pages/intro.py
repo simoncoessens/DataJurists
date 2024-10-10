@@ -2,74 +2,90 @@ import streamlit as st
 import utils
 
 def render_intro():
-    st.title("Welcome to the AIA Compliance Checker")
-
     #utils.add_bg_from_base64("encoded_background.txt")
 
-    # Introduction Section
-    st.header("What the AIA is (Article 1)")
+    # Introduction Section with professional styling
+    st.markdown(
+        """
+        <h1 style='text-align: center; font-size: 36px;'>Welcome to ANNA - Your AI Act Compliance Chancellor</h1>
+        """, 
+        unsafe_allow_html=True
+    )
     st.write("""
-        The Artificial Intelligence Act (AIA) is a regulatory framework proposed by the European Union 
-        that aims to ensure AI systems are safe, transparent, and respect fundamental rights. 
-        According to Article 1, the AIA establishes rules and obligations regarding AI systems 
-        and their development, implementation, and use in various sectors.
+        **ANNA** *(AIA Norms Navigation Assistant)* is here to guide you through ensuring your AI system complies with the European Union's 
+        Artificial Intelligence Act (AIA). Let’s simplify the process and keep you on the right track with regulatory requirements.
     """)
 
-    st.header("What Services We Offer")
+    st.markdown("---")
+
+    st.markdown(
+        """
+        <h2 style='text-align: center;'>What is the AI Act? (or Regulation (EU) 2024/1689)</h2>
+        """, 
+        unsafe_allow_html=True
+    )
     st.write("""
-        We offer a comprehensive assessment tool to help organizations ensure their AI systems 
-        are compliant with the AIA. Our service includes:
-        - AI system analysis
-        - AIA compliance evaluation
-        - Detailed reporting and recommendations
+        The **AI Act** (AIA) is a set of regulations created by the European Union to ensure that AI technologies are **safe**, **transparent**, 
+        and respect **fundamental rights**. It classifies AI systems based on risk levels and enforces strict regulations on those presenting 
+        high risks to European citizens' rights.
+        
+        If you’re a provider of an AI system in the EU, you’ll want to make sure your systems meet these compliance standards.
     """)
 
-    st.header("Why You Should Be Concerned and Use Our App")
+    st.markdown("---")
+
+    st.markdown(
+        """
+        <h2 style='text-align: center;'>How Can ANNA Help?</h2>
+        """, 
+        unsafe_allow_html=True
+    )
     st.write("""
-        With the increasing adoption of AI technologies, compliance with the AIA is crucial to 
-        avoid penalties, ensure ethical AI usage, and maintain trust with consumers. Our tool 
-        helps you navigate the complexity of the AIA, ensuring that your AI system meets all 
-        regulatory requirements.
+        Are you a company, startup, or individual providing an AI system within the European Union? **ANNA** is here to:
+        - **Assess risks** your AI system may present.
+        - **Identify obligations** your system must comply with under the AIA.
+        - **Highlight penalties** for non-compliance.
+
+        Save time and ensure your system is ready for the EU market by navigating AIA requirements with ease. With just a few simple questions, 
+        ANNA will provide you with a clear overview of your compliance status.
     """)
+
+    st.markdown("---")
 
     # Add disclaimer
-    st.warning("""
-        **DISCLAIMER**: The AI Act represents only a portion of the rules that apply to the various 
-        stakeholders in the AI value chain. It's important to remember that being compliant with the 
-        AI Act does not mean you are automatically compliant with other existing Union laws. 
-        Specifically, the AI Act complements regulations on data protection, consumer protection, 
-        fundamental rights, employment and worker protection, and product safety. 
-
-        Please keep in mind that while this compliance tool is designed with legal accuracy in mind, 
-        it may still make errors. Always verify the information with a qualified (human) legal advisor 
-        to ensure full compliance.
+    st.info("""
+        **DISCLAIMER**: The AI Act represents only a portion of the rules that apply to stakeholders in the AI value chain. 
+        Compliance with the AI Act does not automatically ensure compliance with other applicable Union laws, such as data protection, 
+        consumer protection, or product safety regulations. For full legal assurance, consult a qualified legal advisor.
     """)
 
     # Add CSS for Next Page button styling
     st.markdown(
     """
     <style>
-        /* Style for the next page button */
-        button[kind="primary"] {
-            background-color: black;
-            color: white;
-            width: 200px;
-            height: 50px;
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            border-radius: 5px;
-        }
-        button[kind="primary"]:hover {
-            background-color: #333;
-        }
+        /* Style for the next question button */
+    button[kind="primary"] {
+        background-color: white;
+        color: black;
+        width: 200px;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        border-radius: 5px;
+        font-family: sans-serif !important;  /* Use the system default font */
+        font-size: 18px;
+    }
+    button[kind="primary"]:hover {
+        background-color: #333 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
-)
+    )
 
     # Add the "Next Page" button to navigate to the questionnaire
-    if st.button("Next Page", type="primary"):
+    if st.button("Proceed", type="primary"):
         st.switch_page("pages/question1.py") 
 
 render_intro()

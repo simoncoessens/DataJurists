@@ -48,19 +48,6 @@ p {{
 [data-testid="collapsedControl"] {{
     display: none;
 }}
-button[kind="primary"] {{
-    background-color: black;
-    color: white;
-    width: 200px;
-    height: 50px;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    border-radius: 5px;
-}}
-button[kind="primary"]:hover {{
-    background-color: #333;
-}}
 </style>
 """
 
@@ -82,3 +69,52 @@ if 'page' not in st.session_state:
     
 if st.session_state.page == 'landing':
     show_landing_page()
+
+# Apply custom CSS for layout and buttons
+st.markdown(
+"""
+<style>
+    /* Hide the Streamlit default hamburger menu (sidebar expander) */
+    [data-testid="collapsedControl"] {
+        display: none;
+    }
+    /* Style for the next question button */
+    button[kind="primary"] {
+        background-color: white;
+        color: white !important;
+        width: 200px;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        border-radius: 5px;
+        font-family: sans-serif !important;  /* Use the system default font */
+        font-size: 18px;
+    }
+    button[kind="primary"]:hover {
+        background-color: #333 !important;
+    }
+    .spacer {
+        margin-top: 200px;
+    }
+    .big-input {
+        font-size: 18px !important;
+        height: 100px !important;
+        width: 100% !important;
+    }
+    /* Adjust the main container to have full width */
+    .main .block-container {
+        max-width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .prompt-box {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+""",
+    unsafe_allow_html=True
+)

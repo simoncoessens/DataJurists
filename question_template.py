@@ -96,8 +96,8 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
         }
         /* Style for the next question button */
         button[kind="primary"] {
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: black;
             width: 200px;
             height: 50px;
             position: fixed;
