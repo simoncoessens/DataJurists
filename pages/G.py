@@ -28,24 +28,29 @@ Looking for clarity? Share the purpose of your system with ANNA. The Assistant w
     For the use case of a fitness tracker: take these pro's and cons into consideration
     Fitness tracker: pros & cons
 
-Pros of using a fitness tracker
+**Fitness tracker: pros & cons**
 
-1. Less stringent compliance (easier compliance). Only be subject to the general requirements and obligations of all AI systems.
-2. Less regulated than medical devices. Entry in the market is easier.
-3. Larger market size. It can be used by anyone as everyone sleeps. Also, under competition law, just because you have a dominant position, doesn’t mean it’s unfair competition (Art. 102, TFUE)
-4. More accessible market means easier marketing opportunities and direct-to consumer sales.
-5. Less upfront investments when it comes to clinical trials, partnerships with national and private healthcare providers (agreements with hospitals), or extensive medical documentation. This also means quicker access to the market.
-6. Penalties are lower.
-7. Fitness trackers are lifestyle products which also means lesser legal risks associated with error in tracking.
+**Pros of selling the solution directly to consudemrs (e.g. integrating it in a fittnes traker):** 
 
-Cons of using a fitness tracker
+1. **Easier compliance**. It will only be subject to the general requirements and obligations that applies to all AI systems. But keep into consideration other EU legislation (e.g. consumer protection and data protection);
+2. L
+3. **Less regulated market**. The entry in the market is easier and free of highly specific regulation (e.g. Medical Device Regulation, MDR). This means
+4. **Larger market size and consumer base**. It can be used by anyone as everyone sleeps. So this product can be more scalable. 
+5. **B2C strategy**. More accessible market means easier marketing opportunities and direct-to consumer sales.
+6. **Less upfront investments** when it comes to clinical trials, partnerships with national and private healthcare providers (agreements with hospitals), or extensive medical documentation. This also means quicker access to the market.
+7. Penalties are lower.
+8. Fitness trackers are lifestyle products which also means lesser legal risks associated with error in tracking.
+
+Cons  of selling the solution directly to consudemrs (e.g. integrating it in a fittnes traker):
 
 1. Congested and saturated market (established players like Apple or Fitbit will make it hard to gain a significant market share).
 2. The need to differentiate from competitors may lead to higher marketing and development costs over time.
 3. Public perception: consumers may see the tool as just another fitness tracker AND as a wellness tool rather than a serious medical product, which might limit its perceived accurate.
 4. Similar features with competitors (e.g. sleep tracking) may make it difficult to stand out.
+5. May be less profitable
+6. **Possible competition law concerns**. Since you will need to just because you have a dominant position, doesn’t mean it’s unfair competition (Art. 102, TFEU)
 
-Medical device: pros & cons
+**Medical device: pros & cons**
 
 Pros of using a medical device
 
@@ -53,7 +58,7 @@ Pros of using a medical device
 2. Potential for long-term contracts with healthcare institutions means long stable revenue streams. Having an endorsement by doctors and therapists could give more credibility to the product, making future entry into the larger market easier
 3. Healthcare: make your AI more socially relevant.
 4. Help meeting higher societal goal of addressing sleep disorder
-5. Fewer competition as stringent regulation tends to deter potential competitors.
+5. Fewer competition one you enter the market as stringent regulation tends to deter potential competitors.
 6. Satisfy SmartBytes’ employees as they would prefer to see their efforts translate into more productivity: satisfied employees = better workers
 
 Cons of using a medical device
@@ -62,7 +67,6 @@ Cons of using a medical device
 2. Medical devices require extensive testing, validation and certification before entering the market. This makes for a lengthy process before the product can enter market. This will also delay revenue.
 3. Higher liability risks and therefore legal claims/financial penalties in case of error in sleep tracking. This might also lead to repetitional damage if medical standards are not met in the long run.
 4. Gaining traction in healthcare can be challenging due to existing relationships with other medical device manufacturers and the slow adoption of new technology in clinical settings.
-
     """,
     question_id=7
 )

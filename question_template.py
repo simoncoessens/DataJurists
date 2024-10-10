@@ -78,13 +78,11 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
         context += f"\n\nPrevious Questions and Answers by the user from the questionnaire:\n{previous_qas}"
 
     # Initialize agent if it doesn't exist
-    if 'agent' not in st.session_state:
-        print("initializing new agent")
-        st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
+    print("initializing new agent")
+    st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
 
     # Initialize messages if they don't exist
-    if 'messages' not in st.session_state:
-        st.session_state.messages = []
+    st.session_state.messages = []
 
     # Apply custom CSS for layout and buttons
     st.markdown(
