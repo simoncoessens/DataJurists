@@ -44,10 +44,6 @@ def fetch_articles(article_ids):
 
     return "\n\n".join(all_fetched_texts)
 
-
-
-
-
 # Function to render the next question button
 def render_next_question_button(next_page):
     # Add a next question button at the bottom-right of the page
@@ -56,8 +52,6 @@ def render_next_question_button(next_page):
 
 # Main function to render the question page
 def render_question_page(question, example, article_ids, next_page, chatbot_context, question_id):
-
-    #utils.add_bg_from_base64("encoded_background.txt")
 
     if 'questions' not in st.session_state:
         st.session_state['questions'] = {}
@@ -83,10 +77,14 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
     if previous_qas:
         context += f"\n\nPrevious Questions and Answers by the user from the questionnaire:\n{previous_qas}"
 
-    # Initialize agent and messages in session state if they don't exist
-    print("initialising new agent")
-    st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
-    st.session_state.messages = []
+    # Initialize agent if it doesn't exist
+    if 'agent' not in st.session_state:
+        print("initializing new agent")
+        st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
+
+    # Initialize messages if they don't exist
+    if 'messages' not in st.session_state:
+        st.session_state.messages = []
 
     # Apply custom CSS for layout and buttons
     st.markdown(
@@ -124,16 +122,23 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
             padding-left: 5%;
             padding-right: 5%;
         }
+        .prompt-box {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-   # Layout split with adjusted gap
+    # Layout split with adjusted gap
     left_col, right_col = st.columns([1, 1], gap="large")
 
-    # Left side for the question and user input
+    # Left side for the question, user input, and chatbot
     with left_col:
+        # Render the question
         st.markdown(f"<h2>{question}</h2>", unsafe_allow_html=True)
         user_input = st.text_area("Answer here:", placeholder="Type your answer", key="big_input")
 
@@ -154,35 +159,45 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
                     for suggestion in suggestions:
                         st.write(f"- {suggestion}")
 
+        # Chatbot below the question
+        st.markdown("<h4>Talk to Anna</h4>", unsafe_allow_html=True)
 
+        prompt = st.chat_input("Ask a question about the main questionnaire question...")
 
-    # Right side for examples and chatbot
+        if prompt:
+            # Append user's message to session state
+            st.session_state.messages.append({"role": "user", "content": prompt})
+
+            # Get response from the agent
+            response = st.session_state.agent.run(prompt)
+            chatbot_response = response['output']
+
+            # Append agent's response to session state
+            st.session_state.messages.append({"role": "assistant", "content": chatbot_response})
+
+        # Display chat history
+        chat_placeholder = st.container()
+        with chat_placeholder:
+            for message in st.session_state.messages:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
+
+        # Add sample prompts section
+        st.markdown("<h4>Try these sample prompts:</h4>", unsafe_allow_html=True)
+        st.markdown("""
+            <div class="prompt-box">
+                <b>Prompt 1:</b> What is the difference between an AI system and an GPAI?
+            </div>
+            <div class="prompt-box">
+                <b>Prompt 2:</b> How do I find what I classify as?
+            </div>
+        """, unsafe_allow_html=True)
+
+    # Right side for examples
     with right_col:
-        with st.container():
-            st.markdown("<h4>Example Explanation</h4>", unsafe_allow_html=True)
-            st.write(example)
+        st.markdown("<h4>Example Explanation</h4>", unsafe_allow_html=True)
+        st.write(example)
 
-        st.markdown('<div class="spacer"></div>', unsafe_allow_html=True)
-
-        with st.container():
-            st.markdown("<h4>Chatbot Assistant</h4>", unsafe_allow_html=True)
-
-            prompt = st.chat_input("Ask a question about the main questionnaire question...")
-
-            chat_placeholder = st.container()
-
-            if prompt:
-                st.session_state.messages.append({"role": "user", "content": prompt})
-
-                response = st.session_state.agent.run(prompt)
-                chatbot_response = response['output']
-
-                st.session_state.messages.append({"role": "assistant", "content": chatbot_response})
-
-            with chat_placeholder:
-                for message in reversed(st.session_state.messages):
-                    with st.chat_message(message["role"]):
-                        st.markdown(message["content"])
 
     # Render the Next Question button
     render_next_question_button(next_page)
