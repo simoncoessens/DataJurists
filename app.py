@@ -9,15 +9,15 @@ def read_base64_from_file(file_path):
     return encoded_string
 
 # Set the page configuration with a custom icon
-im = Image.open('annalogo.png')
+im = Image.open('img/annalogo.png')
 st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed", page_icon=im)
 
 # Add background to the current page
-utils.add_bg_from_base64("encoded_background.txt")
+utils.add_bg_from_base64("img/encoded_background.txt")
 
 # Read the base64-encoded fonts from the text files
-font_base64_1 = read_base64_from_file('encoded_moncheri.txt')  # Replace with the path to your base64 .txt for the first font
-font_base64_2 = read_base64_from_file('encoded_tt_commons.txt')  # Replace with the path to your base64 .txt for the second font
+font_base64_1 = read_base64_from_file('fonts/encoded_moncheri.txt')  # Replace with the path to your base64 .txt for the first font
+font_base64_2 = read_base64_from_file('fonts/encoded_tt_commons.txt')  # Replace with the path to your base64 .txt for the second font
 
 # Define CSS for both fonts using the base64 data read from the text files
 font_css = f"""

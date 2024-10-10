@@ -1,17 +1,17 @@
 import os
 import streamlit as st
-from risk_evaluator import assess_risk 
-from PIL import Image  # Import PIL to handle images
+from risk_evaluator import assess_risk
+from PIL import Image
 from pinecone import Pinecone
 
-
+# Get Pinecone API key from secrets
 pinecone_api_key = st.secrets["pinecone"]["api_key"]
 
-
+# Initialize Pinecone
 pc = Pinecone(api_key=pinecone_api_key)
 index = pc.Index("aiact")
 
-
+# Set Streamlit page configuration
 st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed")
 
 # Custom CSS for layout and button styling
@@ -59,6 +59,13 @@ def render_next_question_button(next_page):
 # Get the user's previous answers from session state
 user_answers = st.session_state.get('answers', {})
 
+# Define the mapping of risk categories to image filenames
+risk_category_images = {
+    "Prohibited Risk": "img/prohibited_risk.png",
+    "High Risk": "img/high_risk.png",
+    "Transparency Risk": "img/transparency_risk.png",
+    "Minimal Risk": "img/minimal_risk.png"
+}
 
 def fetch_articles(article_ids):
     all_fetched_texts = []
@@ -104,36 +111,46 @@ else:
     if 'risk_assessment' not in st.session_state:
         with st.spinner("Assessing risk..."):
             result = assess_risk(context, formatted_answers)
-            
             # Store the results in session state for later use
             st.session_state['risk_assessment'] = result
-    
+
     # Display the risk assessment results
     risk_assessment = st.session_state['risk_assessment']
     st.markdown("### Risk Assessment Result")
     st.write(f"**Risk Category**: {risk_assessment.risk_category}")
     st.write(f"**Explanation**: {risk_assessment.explanation}")
-    st.write(f"**Obligations or Recommendations**:")
+    st.write(f"**Obligations or Recommendations:**")
     for obligation in risk_assessment.obligations_or_recommendations:
         st.write(f"- {obligation}")
 
-# Load the image
-image_path = os.path.join('risk_pyramid.png')
-image = Image.open(image_path)
+    # Get the corresponding image filename based on the risk category
+    risk_category = risk_assessment.risk_category.strip()
+    image_filename = risk_category_images.get(risk_category, 'default_image.png')  # Use a default image if not found
 
-# Add a spacer to push the content to the top (optional)
-st.write("")  # You can add more st.write("") if needed to adjust spacing
+    # Load the image based on the risk category
+    image_path = os.path.join(image_filename)
+    if os.path.exists(image_path):
+        image = Image.open(image_path)
+    else:
+        st.write(f"Image not found for risk category: {risk_category}")
+        image = None
 
-# Create a placeholder at the bottom
-placeholder = st.empty()
+    # Add a spacer to push the content to the top (optional)
+    st.write("")
 
-# Create three columns with the middle one wider inside the placeholder
-with placeholder.container():
-    empty_col1, image_col, empty_col2 = st.columns([1, 2, 1])
+    # Create a placeholder at the bottom
+    placeholder = st.empty()
 
-    # Display the image in the middle column
-    with image_col:
-        st.image(image, use_column_width=True)
+    # Create three columns with the middle one wider inside the placeholder
+    with placeholder.container():
+        empty_col1, image_col, empty_col2 = st.columns([1, 2, 1])
+
+        # Display the image in the middle column
+        with image_col:
+            if image:
+                st.image(image, use_column_width=True)
+            else:
+                st.write("No image to display.")
 
 # Render the Next Page button
 render_next_question_button("pages/summary.py")

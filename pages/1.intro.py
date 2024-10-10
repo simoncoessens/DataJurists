@@ -86,6 +86,6 @@ def render_intro():
 
     # Add the "Next Page" button to navigate to the questionnaire
     if st.button("Proceed", type="primary"):
-        st.switch_page("pages/question1.py") 
+        st.switch_page("pages/A.py") 
 
 render_intro()
