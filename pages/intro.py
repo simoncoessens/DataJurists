@@ -1,7 +1,10 @@
 import streamlit as st
+import utils
 
 def render_intro():
     st.title("Welcome to the AIA Compliance Checker")
+
+    #utils.add_bg_from_base64("encoded_background.txt")
 
     # Introduction Section
     st.header("What the AIA is (Article 1)")

@@ -13,7 +13,7 @@ os.environ["OPENAI_API_KEY"] = openai_api_key
 
 
 class AgentWithMemory:
-    def __init__(self,  model, context=""):
+    def __init__(self, model, context=""):
         # Initialize the conversation memory with the provided context
         self.memory = ConversationBufferMemory(memory_key="chat_history")
         if context:
@@ -29,14 +29,18 @@ class AgentWithMemory:
             self.llm,
             agent="conversational-react-description",
             memory=self.memory,
-            verbose=True,
-            handle_parsing_errors=True 
+            verbose=False,
+            handle_parsing_errors=False 
         )
     
     def run(self, prompt):
-        # Use the invoke method instead of run
-        # Prepare the input as a dictionary
-        return self.agent_chain.invoke({"input": prompt})
+        try:
+            # Invoke the agent as usual
+            return self.agent_chain.invoke({"input": prompt})
+        except ValueError as e:
+            # Log and return the raw LLM output in case of parsing errors
+            raw_output = str(e).split("Could not parse LLM output: `")[1].strip("`")
+            return {"error": "Parsing issue", "output": raw_output}
 
 # Example usage from another function
 def main():

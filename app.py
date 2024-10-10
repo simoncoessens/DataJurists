@@ -1,43 +1,81 @@
 import streamlit as st
+from PIL import Image
+import utils
 
-# Set page configuration to start with sidebar collapsed
-st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed")
+# Function to read the base64 string from a file
+def read_base64_from_file(file_path):
+    with open(file_path, "r") as file:
+        encoded_string = file.read()
+    return encoded_string
 
-# Use st.logo to display the logo in the upper-left corner
-st.logo(
-    "annalogo.png",  # Replace with your large logo file path
-    icon_image="annalogo.png",  # Optional: Replace with a smaller version for the sidebar
-    size="large"  # Choose between "small", "medium", and "large"
-)
+# Set the page configuration with a custom icon
+im = Image.open('annalogo.png')
+st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed", page_icon=im)
 
-# Hide the sidebar expander button and style buttons
-st.markdown(
-    """
-    <style>
-        [data-testid="collapsedControl"] {
-            display: none;
-        }
-        button[kind="primary"] {
-            background-color: black;
-            color: white;
-            width: 200px; /* Adjust the width as needed */
-            height: 50px; /* Adjust the height as needed */
-            display: block;
-            margin: 0 auto; /* Center the button */
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# Add background to the current page
+utils.add_bg_from_base64("encoded_background.txt")
+
+# Read the base64-encoded fonts from the text files
+font_base64_1 = read_base64_from_file('encoded_moncheri.txt')  # Replace with the path to your base64 .txt for the first font
+font_base64_2 = read_base64_from_file('encoded_tt_commons.txt')  # Replace with the path to your base64 .txt for the second font
+
+# Define CSS for both fonts using the base64 data read from the text files
+font_css = f"""
+<style>
+@font-face {{
+  font-family: 'MyCustomFont';
+  src: url(data:font/truetype;charset=utf-8;base64,{font_base64_1}) format('truetype');
+}}
+@font-face {{
+  font-family: 'SecondaryFont';
+  src: url(data:font/opentype;charset=utf-8;base64,{font_base64_2}) format('opentype');
+}}
+h1 {{
+  font-family: 'MyCustomFont';
+  font-size: 60px;
+  color: #000;  /* Darker text */
+  font-weight: bold;
+  text-align: center;  /* Center the heading */
+}}
+p {{
+  font-family: 'SecondaryFont';
+  font-size: 20px;
+  color: #000;
+  font-weight: normal;
+  text-align: center;  /* Center the smaller text */
+  line-height: 1.5;  /* Adjust line height for readability */
+}}
+[data-testid="collapsedControl"] {{
+    display: none;
+}}
+button[kind="primary"] {{
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 50px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 5px;
+}}
+button[kind="primary"]:hover {{
+    background-color: #333;
+}}
+</style>
+"""
+
+# Inject the CSS into the Streamlit app
+st.markdown(font_css, unsafe_allow_html=True)
 
 # Function to display the landing page
 def show_landing_page():
-    st.markdown("<h1 style='text-align: center; margin-top: 20%;'>Navigating the AI Act</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='margin-top: 20%;'>A.N.N.A</h1>", unsafe_allow_html=True)
+    st.markdown("<p>AIA<br>Norms<br>Navigation<br>Assistant</p>", unsafe_allow_html=True)  # Smaller text with custom font below the main heading
     
-    # Centered "Get Started" button
-    if st.button("Get Started", type="primary"):
+    # Add a next question button at the bottom-right of the page
+    if st.button("Start", type="primary"):
         st.switch_page("pages/intro.py")
-
+    
 # Check if the user is on the landing page and render the content
 if 'page' not in st.session_state:
     st.session_state.page = 'landing'

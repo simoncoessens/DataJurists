@@ -26,8 +26,8 @@ Response: {input}
 Classify the response into one of the following categories:
 1. Good Enough - The response answers the question well and in detail.
 2. Good - The response is an answer to the question.
-3. Vague - The response is answering the question but not completely.
-4. Too Vague - The response is unclear or not relevant to the question.
+3. Vague - The response has nothing to do with the question.
+4. Too Vague - The response is not a sentence in English.
 
 Provide suggestions for improvement if necessary. These suggestions should help the user provide more clarity, detail, or relevance.
 
@@ -48,7 +48,7 @@ class Classification(BaseModel):
     )
 
 # Initialize the LLM with structured output for classification and suggestions
-llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo").with_structured_output(
+llm = ChatOpenAI(temperature=0.5, model="gpt-3.5-turbo").with_structured_output(
     Classification
 )
 

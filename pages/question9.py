@@ -11,12 +11,12 @@ render_question_page(
         "it may pose a significant risk. The chatbot can help you explore whether your system meets these or other high-risk conditions."
     ),
     article_ids=[
-        "article_6",
+        "article_006",
         "recital_rct_48", "recital_rct_53"
     ],
     next_page="pages/question10.py",
     chatbot_context="""
-    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
     Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
     Your main responsibilities include:
@@ -24,7 +24,7 @@ render_question_page(
     - Assisting users in answering the **Main Question**: {question}
     - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
     using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=9

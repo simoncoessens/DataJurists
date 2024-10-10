@@ -1,18 +1,25 @@
 import os
 import streamlit as st
 from pinecone import Pinecone
-from evaluator import classify_and_suggest  # Your existing evaluator
+from evaluator import classify_and_suggest 
 from agent_with_memory import AgentWithMemory
 import time
+import utils
 
-# Fetch the OpenAI and Pinecone API keys from Streamlit secrets
+# Function to read the base64 string from a file
+def read_base64_from_file(file_path):
+    with open(file_path, "r") as file:
+        encoded_string = file.read()
+    return encoded_string
+
+# Read the base64-encoded TT Commons font from the .txt file
+font_base64_tt_commons = read_base64_from_file('encoded_tt_commons.txt')  # Adjust path as necessary
+
 openai_api_key = st.secrets["openai"]["api_key"]
 pinecone_api_key = st.secrets["pinecone"]["api_key"]
 
-# Set your OpenAI API key
 os.environ["OPENAI_API_KEY"] = openai_api_key
 
-# Initialize Pinecone connection
 pc = Pinecone(api_key=pinecone_api_key)
 index = pc.Index("aiact")
 
@@ -20,29 +27,31 @@ def fetch_articles(article_ids):
     all_fetched_texts = []
 
     for article_id in article_ids:
-        # If an article ID does not specify a section (like "article_5"), fetch all subsections (e.g., "article_5_1", "article_5_2", ...)
-        if article_id.count('_') == 1:  # If it contains only one underscore (like "article_5")
-            # Construct all possible subsection IDs (this assumes a predefined range of subsections, e.g., 1 to 10)
-            subsection_ids = [f"{article_id}_{i}" for i in range(1, 11)]  # Adjust the range as needed
+        # Try to fetch the article normally
+        result = index.fetch(ids=[article_id])
+
+        if article_id in result['vectors']:
+            # Article found
+            all_fetched_texts.append(f"{article_id}:\n{result['vectors'][article_id]['metadata']['text']}")
+        else:
+            # Article not found, try to fetch subsections
+            subsection_ids = [f"{article_id}.{i:03d}" for i in range(1, 100)]  # Generates 001, 002, ..., 099
             result = index.fetch(ids=subsection_ids)
-            
-            # Add the fetched subsections to the result
+
+            # Keep track of whether any subsections were found
+            subsections_found = False
+
+            # Process fetched subsections
             for subsection_id in subsection_ids:
                 if subsection_id in result['vectors']:
+                    subsections_found = True
                     all_fetched_texts.append(f"{subsection_id}:\n{result['vectors'][subsection_id]['metadata']['text']}")
-                else:
-                    all_fetched_texts.append(f"No article found for ID: {subsection_id}")
-        else:
-            # For specific IDs (like "article_5_1"), fetch normally
-            result = index.fetch(ids=[article_id])
-            if article_id in result['vectors']:
-                all_fetched_texts.append(f"{article_id}:\n{result['vectors'][article_id]['metadata']['text']}")
-            else:
-                all_fetched_texts.append(f"No article found for ID: {article_id}")
+
+            if not subsections_found:
+                # No subsections found, print a message to the terminal
+                print(f"No article found for ID: {article_id}")
 
     return "\n\n".join(all_fetched_texts)
-
-
 
 # Function to render the next question button
 def render_next_question_button(next_page):
@@ -52,6 +61,10 @@ def render_next_question_button(next_page):
 
 # Main function to render the question page
 def render_question_page(question, example, article_ids, next_page, chatbot_context, question_id):
+
+    if 'questions' not in st.session_state:
+        st.session_state['questions'] = {}
+
     if 'answers' not in st.session_state:
         st.session_state['answers'] = {}
 
@@ -61,27 +74,36 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
     # Format the initial context based on the current question and articles
     context = chatbot_context.format(question=question, articles=articles)
 
-    # Add previous answers to the context
-    previous_answers = "\n\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state['answers'].items()])
-    
-    # Combine previous answers with the current context
-    if previous_answers:
-        context += f"\n\nPrevious Questions and Answers:\n{previous_answers}"
+    # Add previous questions and answers to the context
+    previous_qas = "\n\n".join([f"**Question {i + 1}: {st.session_state['questions'][qid]}**\n**Your Answer:** {a}" for i, (qid, a) in enumerate(st.session_state['answers'].items())])
+
+    # Combine previous Q&As with the current context
+    if previous_qas:
+        context += f"\n\nPrevious Questions and Answers by the user from the questionnaire:\n{previous_qas}"
 
     # Initialize agent and messages in session state if they don't exist
-    st.session_state.agent = AgentWithMemory(context=context, model="gpt-3.5-turbo")
+    print("initialising new agent")
+    st.session_state.agent = AgentWithMemory(context=context, model="gpt-4o")
     st.session_state.messages = []
 
-    # Apply custom CSS for layout and buttons
+    # Apply custom CSS for layout, fonts, chatbot, and buttons
     st.markdown(
-    """
+    f"""
     <style>
+        @font-face {{
+          font-family: 'TTCommons';
+          src: url(data:font/opentype;charset=utf-8;base64,{font_base64_tt_commons}) format('opentype');
+        }}
+        /* Apply TT Commons font globally to all elements */
+        * {{
+            font-family: 'TTCommons', sans-serif;
+        }}
         /* Hide the Streamlit default hamburger menu (sidebar expander) */
-        [data-testid="collapsedControl"] {
+        [data-testid="collapsedControl"] {{
             display: none;
-        }
+        }}
         /* Style for the next question button */
-        button[kind="primary"] {
+        button[kind="primary"] {{
             background-color: black;
             color: white;
             width: 200px;
@@ -90,24 +112,28 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
             bottom: 30px;
             right: 30px;
             border-radius: 5px;
-        }
-        button[kind="primary"]:hover {
+        }}
+        button[kind="primary"]:hover {{
             background-color: #333;
-        }
-        .spacer {
+        }}
+        .spacer {{
             margin-top: 200px;
-        }
-        .big-input {
+        }}
+        .big-input {{
             font-size: 18px !important;
             height: 100px !important;
             width: 100% !important;
-        }
+        }}
         /* Adjust the main container to have full width */
-        .main .block-container{
+        .main .block-container{{
             max-width: 90%;
             padding-left: 5%;
             padding-right: 5%;
-        }
+        }}
+        /* Chatbot styling: Apply TT Commons font to the chat */
+        .stChatMessage {{
+            font-family: 'TTCommons', sans-serif;
+        }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -164,7 +190,7 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
             with chat_placeholder:
                 for message in reversed(st.session_state.messages):
                     with st.chat_message(message["role"]):
-                        st.markdown(message["content"])
+                        st.markdown(f"<div class='stChatMessage'>{message['content']}</div>")
 
     # Render the Next Question button
     render_next_question_button(next_page)

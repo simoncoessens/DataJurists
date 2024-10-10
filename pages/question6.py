@@ -17,7 +17,7 @@ render_question_page(
         "conscious awareness, or conducts social scoring, it may fall under these prohibited categories."
     ),
     article_ids=[
-        "article_5",
+        "article_005",
         "recital_rct_15", "recital_rct_16", "recital_rct_17", "recital_rct_18", "recital_rct_19", 
         "recital_rct_29", "recital_rct_30", "recital_rct_31", "recital_rct_32", "recital_rct_33", 
         "recital_rct_34", "recital_rct_36", "recital_rct_38", "recital_rct_39", "recital_rct_42", 
@@ -25,7 +25,7 @@ render_question_page(
     ],
     next_page="pages/question7.py",
     chatbot_context="""
-    You are an AI assistant whose primary task is to help users answer the main question in the questionnaire. 
+    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
     Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
 
     Your main responsibilities include:
@@ -33,7 +33,7 @@ render_question_page(
     - Assisting users in answering the **Main Question**: {question}
     - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses remain focused on helping users address the main question. Provide informative, easy-to-understand answers to any other questions they may have, 
+    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
     using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=6
