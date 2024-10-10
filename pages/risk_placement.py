@@ -1,9 +1,17 @@
 import os
 import streamlit as st
-from risk_evaluator import assess_risk  # Import the assess_risk function from your script
+from risk_evaluator import assess_risk 
 from PIL import Image  # Import PIL to handle images
+from pinecone import Pinecone
 
-# Set the page layout to wide
+
+pinecone_api_key = st.secrets["pinecone"]["api_key"]
+
+
+pc = Pinecone(api_key=pinecone_api_key)
+index = pc.Index("aiact")
+
+
 st.set_page_config(page_title="ANNA", layout="wide", initial_sidebar_state="collapsed")
 
 # Custom CSS for layout and button styling
@@ -51,6 +59,37 @@ def render_next_question_button(next_page):
 # Get the user's previous answers from session state
 user_answers = st.session_state.get('answers', {})
 
+
+def fetch_articles(article_ids):
+    all_fetched_texts = []
+
+    for article_id in article_ids:
+        # Try to fetch the article normally
+        result = index.fetch(ids=[article_id])
+
+        if article_id in result['vectors']:
+            # Article found
+            all_fetched_texts.append(f"{article_id}:\n{result['vectors'][article_id]['metadata']['text']}")
+        else:
+            # Article not found, try to fetch subsections
+            subsection_ids = [f"{article_id}.{i:03d}" for i in range(1, 100)]  # Generates 001, 002, ..., 099
+            result = index.fetch(ids=subsection_ids)
+
+            # Keep track of whether any subsections were found
+            subsections_found = False
+
+            # Process fetched subsections
+            for subsection_id in subsection_ids:
+                if subsection_id in result['vectors']:
+                    subsections_found = True
+                    all_fetched_texts.append(f"{subsection_id}:\n{result['vectors'][subsection_id]['metadata']['text']}")
+
+            if not subsections_found:
+                # No subsections found, print a message to the terminal
+                print(f"No article found for ID: {article_id}")
+
+    return "\n\n".join(all_fetched_texts)
+
 # Check if there are any answers to use for the risk assessment
 if not user_answers:
     st.write("No answers provided yet. Please answer the previous questions to perform the risk assessment.")
@@ -59,10 +98,7 @@ else:
     formatted_answers = "\n".join([f"{question_id}: {answer}" for question_id, answer in user_answers.items()])
 
     # Detailed context for the risk assessment
-    context = f"""
-    High risk AI systems include:
-    ... [Your existing context here] ...
-    """
+    context = fetch_articles(["article_005", "article_006", "article_050", "article_095"])
 
     # Automatically perform risk assessment when the page loads
     if 'risk_assessment' not in st.session_state:
@@ -77,8 +113,9 @@ else:
     st.markdown("### Risk Assessment Result")
     st.write(f"**Risk Category**: {risk_assessment.risk_category}")
     st.write(f"**Explanation**: {risk_assessment.explanation}")
-
-# **Add this code to include the centered image at the bottom**
+    st.write(f"**Obligations or Recommendations**:")
+    for obligation in risk_assessment.obligations_or_recommendations:
+        st.write(f"- {obligation}")
 
 # Load the image
 image_path = os.path.join('risk_pyramid.png')
