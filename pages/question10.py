@@ -23,7 +23,7 @@ render_question_page(
     - Assisting users in answering the **Main Question**: {question}
     - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
+    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold and write them in readable text not as the internal representation) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
     using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=10

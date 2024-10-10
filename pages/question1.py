@@ -2,29 +2,27 @@ from question_template import render_question_page
 
 render_question_page(
     question="""
-    Describe the AI system that will be the target of this compliance analysis. Include
-    details about its functionality and whether it can be classified as an AI system or a
-    General Purpose AI system.
+    Provide a detailed description of the AI system that is the subject of this compliance analysis. Focus on its functionality and classify it as either an AI system or a General Purpose AI (GPAI) system. Explain the reasoning behind your classification.
     """,
     example=(
         """
 **Context**
-Defining what constitutes an AI system can sometimes be tricky. The European
-Union has opted to align with an international definition, aiming to distinguish AI
-systems from traditional software. The EU AI Act focuses on two primary targets:
-AI systems and General Purpose AI (GPAI) models.
-An AI system is characterized by the following features:
-**Autonomy**: It’s designed to operate with varying degrees of independence.
-**Adaptability**: The system may show adaptive behavior after deployment,
-working towards explicit or implicit objectives.
-**Inference**: It processes input to generate outputs like predictions, content,
-recommendations, or decisions.
-**Impact**: These outputs can affect physical or virtual environments.
-A General Purpose AI (GPAI) model, on the other hand, has these characteristics:
-It demonstrates significant generality.
-It can competently perform a wide variety of tasks,
-It can be integrated into various downstream systems or applications.
-    """
+
+Understanding the nature of an AI system is essential when assessing compliance with regulations like the EU AI Act. The European Union uses an international definition that distinguishes AI systems from traditional software, focusing on two key categories: AI systems and General Purpose AI (GPAI) models.
+
+An AI system is generally defined by the following characteristics:
+
+- **Autonomy**: It operates with varying levels of independence, without constant human intervention.
+- **Adaptability**: The system may evolve or learn after deployment, adjusting its behavior toward specific goals or objectives.
+- **Inference**: It generates outputs such as predictions, recommendations, or decisions based on processing inputs.
+- **Impact**: Its outputs can influence physical or virtual environments.
+
+A General Purpose AI (GPAI) model is characterized by:
+
+- **Generality**: It is designed to perform a broad range of tasks rather than being specialized.
+- **Versatility**: It can be integrated into various downstream applications or systems.
+- **Competency**: It demonstrates competence in multiple domains or tasks beyond its original scope.
+        """
     ),
     article_ids=["article_003", "recital_rct_12", "recital_rct_97", "recital_rct_100"],
     next_page="pages/question2.py",
@@ -37,7 +35,7 @@ It can be integrated into various downstream systems or applications.
     - Assisting users in answering the **Main Question**: {question}
     - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
+    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold and write them in readable text not as the internal representation) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
     using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
     """,
     question_id=1

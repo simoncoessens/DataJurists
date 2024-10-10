@@ -72,7 +72,12 @@ def render_question_page(question, example, article_ids, next_page, chatbot_cont
     context = chatbot_context.format(question=question, articles=articles)
 
     # Add previous questions and answers to the context
-    previous_qas = "\n\n".join([f"**Question {i + 1}: {st.session_state['questions'][qid]}**\n**Your Answer:** {a}" for i, (qid, a) in enumerate(st.session_state['answers'].items())])
+    previous_qas = ""
+    if 'questions' in st.session_state and 'answers' in st.session_state:
+        previous_qas = "\n\n".join(
+            [f"**Question {i + 1}: {st.session_state['questions'].get(qid, 'Unknown Question')}**\n**Your Answer:** {a}" 
+            for i, (qid, a) in enumerate(st.session_state['answers'].items())]
+        )
 
     # Combine previous Q&As with the current context
     if previous_qas:

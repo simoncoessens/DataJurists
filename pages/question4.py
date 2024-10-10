@@ -2,31 +2,30 @@ from question_template import render_question_page
 
 render_question_page(
     question=(
-        "Geographical Scope:\n\n"
-        "Irrespective of whether you are established or located within the Union or in a third country, are you placing AI systems "
-        "on the market or putting them into service in the Union?\n\n"
-        "Do you have your place of establishment, or are you located in a third country, but the output produced by the AI system is used in the Union?"
+        "Are you under the geographical scope of the AIA?\n\n"
+        "Please provide more information about the country where you are established and where your activities are based. "
+        "Specifically, consider the following questions to help the Chatbot Assistant guide you through your obligations under the AI Act:\n\n"
+        "- Are you placing AI systems on the market or putting them into service within the European Union (EU)?\n"
+        "- Is your place of establishment or location outside the EU, but the AI system's output is used within the EU?"
     ),
     example=(
         "For example, if you are a provider located in a third country but selling AI systems in the EU, or if your AI system produces "
         "an output that is used within the EU, this regulation will apply to you."
     ),
-   article_ids = [
-    "article_002.001", "article_002.002",
-    "recital_rct_21", "recital_rct_22", "recital_rct_82"
-],
+    article_ids=[
+        "article_002.001", "article_002.002",
+        "recital_rct_21", "recital_rct_22", "recital_rct_82"
+    ],
     next_page="pages/question5.py",
     chatbot_context="""
-    You are an Anna the AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI act. At introduction you say your name.
-    Users may also ask additional questions related to the main question, and your role is to assist them by providing clear and accurate answers.
+    You are Anna, an AI assistant whose primary task is to help users answer the main question in the questionnaire with relation to the AI Act. At the start, introduce yourself and your role.
 
-    Your main responsibilities include:
+    Your primary tasks include:
 
     - Assisting users in answering the **Main Question**: {question}
     - Referencing the **Relevant Articles** (from the AI Act): {articles}
 
-    Ensure that your responses remain focused on helping users address the main question and always reference the articles you used (in bold) to give the information (but only use the **Relevant Articles** given above). Provide informative, easy-to-understand answers to any other questions they may have, 
-    using the articles and examples provided to support your responses. The goal is to guide users in completing the questionnaire effectively.
+    Focus on helping users determine whether their activities fall under the geographical scope of the AI Act, particularly if they are based outside the EU but may still be subject to the Act’s regulations. Use the provided relevant articles to give accurate, clear guidance based on their situation.
     """,
     question_id=4
 )
