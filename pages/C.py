@@ -15,7 +15,7 @@ To help ANNA better understand your role within the AI system's value chain, ple
         "article_003",
         "recital_rct_13", "recital_rct_23", "recital_rct_79", "recital_rct_82", "recital_rct_83"
     ],
-    next_page="pages/question4.py",
+    next_page="pages/D.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

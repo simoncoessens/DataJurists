@@ -61,7 +61,7 @@ def show_landing_page():
     
     # Add a next question button at the bottom-right of the page
     if st.button("Start", type="primary"):
-        st.switch_page("pages/intro.py")
+        st.switch_page("pages/1.intro.py")
     
 # Check if the user is on the landing page and render the content
 if 'page' not in st.session_state:

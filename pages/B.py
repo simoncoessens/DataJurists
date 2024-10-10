@@ -15,7 +15,7 @@ For example, you may be excluded if your AI system is used exclusively for milit
         "article_002.003", "article_002.004", "article_002.006", "article_002.008", "article_002.010", "article_002.012",
         "recital_rct_24", "recital_rct_25"
     ],
-    next_page="pages/question3.py",
+    next_page="pages/C.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

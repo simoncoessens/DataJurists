@@ -15,7 +15,7 @@ For example, if your AI system is intended to perform profiling of natural perso
         "article_006",
         "recital_rct_48", "recital_rct_53"
     ],
-    next_page="pages/question10.py",
+    next_page="pages/I.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

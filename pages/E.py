@@ -17,7 +17,7 @@ Ask ANNA to learn more about what counts as a "downstream modification"!
         "article_025",
         "recital_rct_84", "recital_rct_86"
     ],
-    next_page="pages/question6.py",
+    next_page="pages/F.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

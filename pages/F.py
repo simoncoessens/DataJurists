@@ -20,7 +20,7 @@ Unsure if your system falls under this category? Ask ANNA to find out if it's pr
         "recital_rct_34", "recital_rct_36", "recital_rct_38", "recital_rct_39", "recital_rct_42", 
         "recital_rct_43", "recital_rct_44", "annex_anx_II"
     ],
-    next_page="pages/question7.py",
+    next_page="pages/G.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

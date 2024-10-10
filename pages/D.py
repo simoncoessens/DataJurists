@@ -16,7 +16,7 @@ Want to dive deeper? Chat with ANNA for more details!
     article_ids=[
         "article_002.003", "article_002.004", "article_002.006", "article_002.008","article_002.010","article_002.012", "recital_rct_25", "recital_rct_24"
     ],
-    next_page="pages/question5.py",
+    next_page="pages/E.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 

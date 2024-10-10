@@ -26,7 +26,7 @@ Not sure where your AI system fits in? No worries! Ask **ANNA** to help clear th
         """
     ),
     article_ids=["article_003", "recital_rct_12", "recital_rct_97", "recital_rct_100"],
-    next_page="pages/question2.py",
+    next_page="pages/B.py",
     chatbot_context="""
     You are Anna, the AI assistant helping users navigate the questionnaire on compliance with the AI Act. Introduce yourself as Anna when the conversation starts. Your role is to assist users in answering the **Main Question**: {question}, using relevant information from the **AI Act Articles**: {articles}.
 
