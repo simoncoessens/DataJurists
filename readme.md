@@ -36,7 +36,18 @@ Here are some demo videos showcasing A.N.N.A.’s key features and functionaliti
 
 ### Demo 1: Introduction to A.N.N.A.
 
+
+https://github.com/user-attachments/assets/2aa5f5ba-f971-4e11-a955-8f0c00bf3b61
+
+
+
 ### Demo 2: Navigating the AI Act
+
+
+
+https://github.com/user-attachments/assets/f9b8e891-cef4-4196-bd25-e3a28a802c5f
+
+
 
 ## 👥 Meet the Team
 
