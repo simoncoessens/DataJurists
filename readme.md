@@ -30,24 +30,23 @@
 >
 > By providing easy access to the complex legal framework of the AI Act, A.N.N.A. empowers users to understand their AI system’s obligations with accuracy and ease. A.N.N.A. supports both general AI systems and high-risk applications, ensuring legal adherence at every step.
 
+## 🏆 Awards and Recognition
+
+We are proud to announce that **A.N.N.A.** won the **1st Prize** and was recognized as the **Most Innovative Solution** at the **LEADS Innovation Challenge**!
+
+This award acknowledges our commitment to delivering an innovative, legally accurate, and user-friendly tool to navigate the complexities of the EU AI Act. We are thrilled to continue enhancing A.N.N.A. and helping businesses stay compliant with evolving AI regulations.
+
 ## 📹 Demo Videos
 
 Here are some demo videos showcasing A.N.N.A.’s key features and functionalities:
 
 ### Demo 1: Introduction to A.N.N.A.
 
-
 https://github.com/user-attachments/assets/2aa5f5ba-f971-4e11-a955-8f0c00bf3b61
-
-
 
 ### Demo 2: Navigating the AI Act
 
-
-
 https://github.com/user-attachments/assets/f9b8e891-cef4-4196-bd25-e3a28a802c5f
-
-
 
 ## 👥 Meet the Team
 
