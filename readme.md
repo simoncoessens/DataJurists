@@ -34,6 +34,8 @@
 
 We are proud to announce that **A.N.N.A.** won the **1st Prize** and was recognized as the **Most Innovative Solution** at the **LEADS Innovation Challenge**!
 
+You can learn more about the competition and our achievement on the official [LEADS Innovation Challenge webpage](https://www.legalityattentivedatascientists.eu).
+
 This award acknowledges our commitment to delivering an innovative, legally accurate, and user-friendly tool to navigate the complexities of the EU AI Act. We are thrilled to continue enhancing A.N.N.A. and helping businesses stay compliant with evolving AI regulations.
 
 ## 📹 Demo Videos
