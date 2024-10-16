@@ -72,9 +72,3 @@ Here’s a brief overview of the tech stack powering A.N.N.A.:
 # ⚠️ License
 
 A.N.N.A. is open-source software licensed under the MIT License. All content and designs are available under the Creative Commons license (CC BY-SA 4.0 International).
-
-<br />
-
-# 💛
-
-If you need help with legal compliance for AI, don’t hesitate to reach out to our team for guidance. Let's ensure that AI remains safe and fair for all users.
