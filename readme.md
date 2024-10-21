@@ -18,7 +18,7 @@
 
 <div align='center'>
 
-### A.N.N.A. is your assistant to navigate AI regulations! 🚀
+### A.N.N.A. is your assistant to navigate the EU Artificial Intelligence Act! 🚀
 
 **Web**: Visit [https://datajurists.streamlit.app/](https://datajurists.streamlit.app/) to explore how A.N.N.A. can help you.
   <br />
@@ -26,17 +26,17 @@
 
 # 🧐 Project Overview
 
-> A.N.N.A. (AI Act Norms Navigation Assistant) is designed to help developers, organizations, and legal teams assess compliance with the EU AI Act.
+> A.N.N.A. (AIA Norms Navigation Assistant) is designed to help developers and organizations assess compliance with the EU AI Act.
 >
-> By providing easy access to the complex legal framework of the AI Act, A.N.N.A. empowers users to understand their AI system’s obligations with accuracy and ease. A.N.N.A. supports both general AI systems and high-risk applications, ensuring legal adherence at every step.
+> By providing easy access to the complex legal framework of the AI Act, A.N.N.A. empowers users to understand their AI system’s obligations with accuracy and ease. A.N.N.A. supports both AI and high-risk systems ensuring legal adherence at every step.
 
 ## 🏆 Awards and Recognition
 
 We are proud to announce that **A.N.N.A.** won the **1st Prize** and was recognized as the **Most Innovative Solution** at the **LEADS Innovation Challenge**!
 
-You can learn more about the competition and our achievement on the official [LEADS Innovation Challenge webpage](https://www.legalityattentivedatascientists.eu).
+You can learn more about the competition and our achievements on the official [LEADS Innovation Challenge webpage](https://www.legalityattentivedatascientists.eu).
 
-This award acknowledges our commitment to delivering an innovative, legally accurate, and user-friendly tool to navigate the complexities of the EU AI Act. We are thrilled to continue enhancing A.N.N.A. and helping businesses stay compliant with evolving AI regulations.
+This award acknowledges our commitment to delivering an innovative, legally accurate, and user-friendly tool. We are thrilled to continue enhancing A.N.N.A. and helping businesses stay compliant with evolving AI regulations.
 
 ## 📹 Demo Videos
 
