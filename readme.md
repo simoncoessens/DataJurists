@@ -20,7 +20,7 @@
 
 ### A.N.N.A. is your assistant to navigate AI regulations! 🚀
 
-- **Web**: Visit [https://datajurists.streamlit.app/](https://datajurists.streamlit.app/) to explore how A.N.N.A. can help you.
+**Web**: Visit [https://datajurists.streamlit.app/](https://datajurists.streamlit.app/) to explore how A.N.N.A. can help you.
   <br />
   <br />
 
