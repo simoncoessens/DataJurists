@@ -68,7 +68,16 @@ Here’s a brief overview of the tech stack powering A.N.N.A.:
 - **Machine Learning**: Legal compliance assessments are powered by advanced [Retrieval Augmented Generation (RAG)](https://huggingface.co/blog/rag) technology.
 
 <br />
+## 🚀 How to Run the Application
 
+To run the A.N.N.A. Streamlit app locally, follow these steps:
+
+1.
+   ```bash
+   git clone https://github.com/data-jurists/anna.git
+   cd anna
+2. ```bash
+    streamlit run app.py
 # ⚠️ License
 
 A.N.N.A. is open-source software licensed under the MIT License. All content and designs are available under the Creative Commons license (CC BY-SA 4.0 International).
