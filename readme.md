@@ -75,8 +75,7 @@ To run the A.N.N.A. Streamlit app locally, follow these steps:
 
 1.
    ```bash
-   git clone https://github.com/data-jurists/anna.git
-   cd anna
+   git clone https://github.com/simoncoessens/DataJurists
 2. ```bash
     streamlit run app.py
 # ⚠️ License
