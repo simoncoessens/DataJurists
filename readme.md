@@ -68,6 +68,7 @@ Here’s a brief overview of the tech stack powering A.N.N.A.:
 - **Machine Learning**: Legal compliance assessments are powered by advanced [Retrieval Augmented Generation (RAG)](https://huggingface.co/blog/rag) technology.
 
 <br />
+
 ## 🚀 How to Run the Application
 
 To run the A.N.N.A. Streamlit app locally, follow these steps:
